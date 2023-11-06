@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <string>
-#include <tuple>
 
 using namespace std;
 
@@ -13,6 +12,5 @@ public:
     virtual std::vector<std::string> getRequirements() const = 0;
     virtual void printInfo() const = 0;
 };
-
 
 #endif //PAOO_TEMA_II_ISUBJECT_H
