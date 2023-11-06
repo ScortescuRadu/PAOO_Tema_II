@@ -14,6 +14,9 @@ private:
     std::vector<ExtracurricularSubject> extracurricularSubjects;
 public:
     Person(std::string name, int age);
+
+    Person();
+
     std::string getName() override;
     int getAge() override;
     std::string getSchool() override;
