@@ -14,8 +14,15 @@ private:
     std::vector<ExtracurricularSubject> extracurricularSubjects;
 public:
     Person(std::string name, int age);
-
+    Person(Person&& other) noexcept;
+    Person(const Person& other)
+            : name(other.name),
+              age(other.age),
+              school(other.school),
+              subjects(other.subjects),
+              extracurricularSubjects(other.extracurricularSubjects) {};
     Person();
+    ~Person() {};
 
     std::string getName() override;
     int getAge() override;

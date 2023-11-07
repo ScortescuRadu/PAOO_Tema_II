@@ -2,6 +2,12 @@
 
 Student::Student(std::string name, int age):name(name),age(age) {};
 
+Student::Student(Student&& other) noexcept
+        : Person(std::move(other)), // Call the base class's move constructor
+          scholarSituation(std::move(other.scholarSituation)) {
+    other.scholarSituation.clear();
+}
+
 std::string Student::getName() {
     return name;
 }

@@ -2,6 +2,14 @@
 
 Teacher::Teacher(std::string name, int age):name(name),age(age) {};
 
+Teacher::Teacher(Teacher&& other) noexcept
+        : Person(std::move(other)), // Call the base class's move constructor
+          subjectsStudents(std::move(other.subjectsStudents)),
+          extracurricularSubjectsStudents(std::move(other.extracurricularSubjectsStudents)) {
+    other.subjectsStudents.clear();
+    other.extracurricularSubjectsStudents.clear();
+}
+
 std::string Teacher::getName() {
     return name;
 }

@@ -19,6 +19,16 @@ private:
 
 public:
     Student(std::string name, int age);
+    Student(Student&& other) noexcept;
+    Student(const Student& other)
+            : Person(other), // Call the base class's copy constructor
+              name(other.name),
+              age(other.age),
+              school(other.school),
+              subjects(other.subjects),
+              extracurricularSubjects(other.extracurricularSubjects),
+              scholarSituation(other.scholarSituation) {};
+    ~Student() {};
 
     std::string getName() override;
     int getAge() override;

@@ -2,6 +2,17 @@
 
 Person::Person(std::string name, int age):name(name),age(age) {};
 
+Person::Person(Person&& other) noexcept
+        : name(std::move(other.name)),
+          age(other.age),
+          school(std::move(other.school)),
+          subjects(std::move(other.subjects)),
+          extracurricularSubjects(std::move(other.extracurricularSubjects)) {
+    other.age = 0;
+    other.subjects.clear();
+    other.extracurricularSubjects.clear();
+}
+
 std::string Person::getName() {
     return name;
 }
