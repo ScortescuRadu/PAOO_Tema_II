@@ -9,6 +9,9 @@
 #include "Person/Teacher.h"
 
 using namespace std;
+using namespace biology;
+using namespace chemistry;
+using namespace student;
 
 namespace grade_report_space
 {
@@ -28,8 +31,8 @@ namespace grade_report_space
 
 int main() {
     std::vector<ISubject*> subjects1;
-    Biology introBiology("Introductory Biology", {"Passion for plants"});
-    Chemistry introChemistry("Introductory Chemistry", {"Introductory Math"});
+    biology::Biology introBiology("Introductory Biology", {"Passion for plants"});
+    chemistry::Chemistry introChemistry("Introductory Chemistry", {"Introductory Math"});
 
     subjects1.push_back(&introBiology);
     subjects1.push_back(&introChemistry);
@@ -70,10 +73,5 @@ int main() {
     s1.setSchool("Tibiscus");
     s2.printInfo();
 
-    cout << endl << "Third student:" << endl;
-    Student s3(std::move(s2));
-    s3.printInfo();
-
-    s2.printInfo(); // is empty
     return 0;
 }

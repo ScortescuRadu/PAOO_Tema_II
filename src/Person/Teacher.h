@@ -9,6 +9,7 @@
 #include "Student.h"
 
 using namespace std;
+using namespace student;
 
 class Teacher : public Person{
 private:

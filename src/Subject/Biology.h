@@ -7,17 +7,22 @@
 
 #include "ISubject.h"
 
-class Biology  : public ISubject{
-private:
-    std::string name;
-    std::vector<std::string> requirements;
-public:
-    Biology(std::string  name,const std::vector<std::string>& requirements);
-    ~Biology();
-    void printInfo() const override;
-    std::string getName() const override;
-    std::vector<std::string> getRequirements() const override;
-};
+namespace biology {
+    class Biology : public ISubject {
+    private:
+        std::string name;
+        std::vector<std::string> requirements;
+    public:
+        Biology(std::string name, const std::vector<std::string> &requirements);
 
+        ~Biology();
+
+        void printInfo() const override;
+
+        std::string getName() const override;
+
+        std::vector<std::string> getRequirements() const override;
+    };
+}
 
 #endif //PAOO_TEMA_II_BIOLOGY_H
