@@ -7,9 +7,14 @@
 
 #include "Subject.h"
 
-class ExtracurricularSubject : public Subject{
+class ExtracurricularSubject{
+private:
+    std::string name;
 public:
-    void specialSubject();
+    ExtracurricularSubject(std::string name);
+    ~ExtracurricularSubject();
+    void printInfo();
+    std::string getName();
 };
 
 

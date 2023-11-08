@@ -13,6 +13,11 @@ std::vector<std::string> Subject::getRequirements() const {
     return requirements;
 }
 
+Subject::~Subject(){
+    cout << endl << "Destroying Subject object" << endl;
+    requirements.clear();
+}
+
 void Subject::printInfo() const {
     std::cout << "Subject: " << name << std::endl;
     std::cout << " has the following requirements:" << std::endl;

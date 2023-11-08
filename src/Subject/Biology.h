@@ -13,6 +13,7 @@ private:
     std::vector<std::string> requirements;
 public:
     Biology(std::string  name,const std::vector<std::string>& requirements);
+    ~Biology();
     void printInfo() const override;
     std::string getName() const override;
     std::vector<std::string> getRequirements() const override;

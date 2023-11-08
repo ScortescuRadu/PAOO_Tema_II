@@ -10,7 +10,7 @@
 
 using namespace std;
 
-namespace first_space
+namespace grade_report_space
 {
     int subjectMean(const vector<int>& grades)
     {
@@ -27,12 +27,14 @@ namespace first_space
 }
 
 int main() {
-    Biology introBiology = *new Biology("Introductory Biology", {"sdf"});
-    Chemistry introChemistry = *new Chemistry("Introductory Chemistry", {"asd"});
+    std::vector<ISubject*> subjects1;
+    Biology introBiology("Introductory Biology", {"Passion for plants"});
+    Chemistry introChemistry("Introductory Chemistry", {"Introductory Math"});
 
-    ISubject* subjects[] = {&introBiology, &introChemistry};
+    subjects1.push_back(&introBiology);
+    subjects1.push_back(&introChemistry);
 
-    for (auto s : subjects){
+    for (auto s : subjects1){
         cout << s -> getName() << std::endl;
     }
 
@@ -46,8 +48,32 @@ int main() {
     }
 
     Student s1("Ana", 20);
-    Student s2("Maria", 21);
     s1.setSchool("Politehnica");
+    s1.setSubjects(subjects1);
+    s1.addGradeForSubject(&introBiology, 10);
+    s1.addGradeForSubject(&introBiology, 8);
     s1.printInfo();
+
+    vector <tuple <ISubject*, vector<int>>> situation = s1.getScholarSituation();
+
+    for (const auto& tuple : situation) {
+        ISubject* subjectPtr = std::get<0>(tuple);
+        if (subjectPtr && subjectPtr->getName() == "Introductory Biology") {
+            const std::vector<int>& grades = std::get<1>(tuple);
+            cout << " Biology avg: " << grade_report_space::subjectMean(grades) << endl;
+            break;
+        }
+    }
+
+    cout << endl << "Second student:" << endl;
+    Student s2(s1);
+    s1.setSchool("Tibiscus");
+    s2.printInfo();
+
+    cout << endl << "Third student:" << endl;
+    Student s3(std::move(s2));
+    s3.printInfo();
+
+    s2.printInfo(); // is empty
     return 0;
 }

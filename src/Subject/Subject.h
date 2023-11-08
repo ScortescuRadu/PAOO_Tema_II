@@ -11,6 +11,7 @@ private:
     std::vector<std::string> requirements;
 public:
     Subject(std::string  name,const std::vector<std::string>& requirements);
+    ~Subject();
     void printInfo() const override;
     std::string getName() const override;
     std::vector<std::string> getRequirements() const override;

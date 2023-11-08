@@ -1,13 +1,27 @@
 #include "Student.h"
 
-Student::Student(std::string name, int age):name(name),age(age) {};
+using namespace std;
+
+Student::Student(std::string name, int age):name(name),age(age) {cout << endl << "Student created";};
 
 Student::Student(Student&& other) noexcept
         : Person(std::move(other)), // Call the base class's move constructor
           scholarSituation(std::move(other.scholarSituation)) {
     other.scholarSituation.clear();
 }
-
+Student::Student(const Student& other)
+        : Person(other), // Call the base class's copy constructor
+          name(other.name),
+          age(other.age),
+          school(other.school),
+          subjects(other.subjects),
+          extracurricularSubjects(other.extracurricularSubjects),
+          scholarSituation(other.scholarSituation) {};
+Student::~Student(){
+    cout << endl << "Destroying Student object";
+    extracurricularSubjects.clear();
+    subjects.clear();
+}
 std::string Student::getName() {
     return name;
 }
@@ -17,31 +31,39 @@ int Student::getAge() {
 std::string Student::getSchool() {
     return school;
 }
-std::vector<Subject> Student::getSubjects() {
+std::vector<ISubject*> Student::getSubjects() {
     return subjects;
 }
 std::vector<ExtracurricularSubject> Student::getExtracurricularSubjects() {
     return extracurricularSubjects;
 }
 void Student::printInfo() {
-    cout << name << " attends school: " << school;
+    cout << endl << "Student: " << name << " aged " << age;
+    if (school != std::string()) {
+        cout << " attends the school: " << school;
+    }
+    cout << ", has the subjects:" << endl;
+    for (auto it : subjects)
+        it->printInfo();
+    for (auto it : extracurricularSubjects)
+        it.printInfo();
 }
 void Student::setSchool(std::string newSchool) {
     school = newSchool;
 }
-void Student::setSubjects(std::vector<Subject> newSubjects) {
+void Student::setSubjects(std::vector<ISubject*> newSubjects) {
     subjects = newSubjects;
 }
 void Student::setExtracurricularSubjects(std::vector<ExtracurricularSubject> newExtracurricularSubjects) {
     extracurricularSubjects = newExtracurricularSubjects;
 }
 
-void Student::setScholarSituation(vector <tuple <Subject, vector<int>>> newScholarSituation){
+void Student::setScholarSituation(vector <tuple <ISubject*, vector<int>>> newScholarSituation){
     scholarSituation = newScholarSituation;
 }
-void Student::addGradeForSubject(Subject subject, int grade){
+void Student::addGradeForSubject(ISubject* subject, int grade){
     for (auto& entry : scholarSituation) {
-        if (std::get<0>(entry).getName() == subject.getName()) {
+        if (std::get<0>(entry)->getName() == subject->getName()) {
             std::get<1>(entry).push_back(grade);
             return; // Subject found and grade added
         }
@@ -52,6 +74,6 @@ void Student::addGradeForSubject(Subject subject, int grade){
     scholarSituation.emplace_back(subject, grades);
 }
 
-vector <tuple <Subject, vector<int>>> Student::getScholarSituation(){
+vector <tuple <ISubject*, vector<int>>> Student::getScholarSituation(){
     return scholarSituation;
 }

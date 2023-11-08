@@ -10,7 +10,7 @@ private:
     std::string name;
     int age;
     std::string school;
-    std::vector<Subject> subjects;
+    std::vector<ISubject*> subjects;
     std::vector<ExtracurricularSubject> extracurricularSubjects;
 public:
     Person(std::string name, int age);
@@ -22,16 +22,16 @@ public:
               subjects(other.subjects),
               extracurricularSubjects(other.extracurricularSubjects) {};
     Person();
-    ~Person() {};
+    ~Person();
 
     std::string getName() override;
     int getAge() override;
     std::string getSchool() override;
-    std::vector<Subject> getSubjects() override;
+    std::vector<ISubject*> getSubjects() override;
     std::vector<ExtracurricularSubject> getExtracurricularSubjects() override;
     void printInfo() override;
     void setSchool(std::string newSchool) override;
-    void setSubjects(std::vector<Subject> newSubjects) override;
+    void setSubjects(std::vector<ISubject*> newSubjects) override;
     void setExtracurricularSubjects(std::vector<ExtracurricularSubject> newExtracurricularSubjects) override;
 };
 

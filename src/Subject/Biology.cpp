@@ -4,7 +4,10 @@
 
 Biology::Biology(std::string  name,const std::vector<std::string>& requirements)
         : name(std::move(name)), requirements(requirements){};
-
+Biology::~Biology(){
+    cout << endl << "Biology object destroyed";
+    requirements.clear();
+}
 std::string Biology::getName() const {
     return name;
 }
