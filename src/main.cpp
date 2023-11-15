@@ -73,5 +73,10 @@ int main() {
     s1.setSchool("Tibiscus");
     s2.printInfo();
 
+    Student s3(s2);
+    s3.printInfo();
+    Student s4(std::move(s3));
+    s4.printInfo();
+    s3.printInfo();
     return 0;
 }

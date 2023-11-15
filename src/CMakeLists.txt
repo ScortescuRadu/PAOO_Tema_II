@@ -7,12 +7,14 @@ add_executable(PAOO_Tema_II  main.cpp)
 
 add_subdirectory(Subject)
 add_subdirectory(Person)
+add_subdirectory(PointerManager)
 
 # Link the library from the subdirectory with the main executable
-target_link_libraries(PAOO_Tema_II SubjectLibrary PersonLibrary)
+target_link_libraries(PAOO_Tema_II SubjectLibrary PersonLibrary PointerManagerLibrary)
 
 target_include_directories(PAOO_Tema_II PUBLIC
         "${PROJECT_BINARY_DIR}"
         "${PROJECT_SOURCE_DIR}/Person"
         "${PROJECT_SOURCE_DIR}/Subject"
+        "${PROJECT_SOURCE_DIR}/PointerManager"
 )
