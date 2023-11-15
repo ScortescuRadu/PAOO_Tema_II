@@ -7,11 +7,13 @@
 #include "Person/Person.h"
 #include "Person/Student.h"
 #include "Person/Teacher.h"
+#include "PointerManager/Shared_ptr.h"
 
 using namespace std;
 using namespace biology;
 using namespace chemistry;
 using namespace student;
+using namespace my_pointer;
 
 namespace grade_report_space
 {
@@ -83,5 +85,45 @@ int main() {
 
     cout << endl << "Third student again:" << endl;
     s3.printInfo();
+
+    //////////////////////////
+    /////// Tema III ////////
+    ////////////////////////
+
+    // student0 pointing to a Student Object
+    my_pointer::Shared_ptr<Student> student0(new Student("David", 20));
+
+    cout << "\nstudent0 Shared_pointer: \n";
+    student0->setSchool("Politehnica");
+    cout << " Student0's school: " << student0->getSchool() << endl;
+
+    {
+        // student1 pointing to student0
+        // which ptr1 is pointing to
+        // Shared pointer reference counter
+        // should have increased now to 2.
+        my_pointer::Shared_ptr<Student> student1 = student0;
+        cout << " Student1's school: " << student1->getSchool() << endl;
+        {
+            // student2 pointing to student0
+            // Shared pointer reference counter
+            // should have increased now to 3.
+            my_pointer::Shared_ptr<Student> student2(student0);
+            cout << " Student2's school: " << student2->getSchool() << endl;
+        }
+
+        // student2 is out of scope.
+        // It would have been destructed.
+        // So shared pointer reference counter
+        // should have decreased now to 2.
+        cout << "\nShared object's count now: " << student0.use_count() << endl;
+    }
+
+    // student1 is out of scope.
+    // It would have been destructed.
+    // So shared pointer reference counter
+    // should have decreased now to 1.
+    cout << " Student0's school: " << student0->getSchool() << endl;
+
     return 0;
 }
