@@ -125,5 +125,17 @@ int main() {
     // should have decreased now to 1.
     cout << " Student0's school: " << student0->getSchool() << endl;
 
+
+    std::unique_ptr<Student> unique_student0 (new Student("Popescu", 22));
+    unique_student0->setSchool("UVT");
+    cout << "\nunique_student0's school: " << unique_student0->getSchool() << endl;
+
+    // Error: can't copy unique_ptr
+    // std::unique_ptr<Student> unique_student2 = unique_student0;
+
+    // Works, resource now stored in ptr2
+    std::unique_ptr<Student> unique_student3 = std::move(unique_student0);
+    cout << "unique_student3's school: " << unique_student3->getSchool() << endl;
+
     return 0;
 }
