@@ -8,6 +8,7 @@
 #include "Person/Student.h"
 #include "Person/Teacher.h"
 #include "PointerManager/Shared_ptr.h"
+#include "PersonManager/PersonArray.h"
 
 using namespace std;
 using namespace biology;
@@ -160,5 +161,8 @@ int main() {
         cout << grades[i] << " ";
     cout << endl;
 
+    Student arr[3] = {s1,s2,s4};
+    PersonArray<Student> personArray(arr, 3);
+    personArray.print();
     return 0;
 }

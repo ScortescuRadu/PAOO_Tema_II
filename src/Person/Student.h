@@ -25,6 +25,11 @@ namespace student {
 
         Student(const Student &other);
 
+        // Copy assignment operator
+        Student& operator=(const Student& other);
+
+        friend ostream& operator<<(ostream& os, const Student& student);
+
         ~Student();
 
         std::string getName() override;
@@ -50,6 +55,8 @@ namespace student {
         void setScholarSituation(vector<tuple<ISubject *, vector<int>>> newScholarSituation);
 
         void addGradeForSubject(ISubject *subject, int grade);
+
+        Student();
     };
 }
 

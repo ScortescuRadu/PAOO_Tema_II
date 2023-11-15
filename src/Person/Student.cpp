@@ -30,6 +30,24 @@ namespace student {
               extracurricularSubjects(other.extracurricularSubjects),
               scholarSituation(other.scholarSituation) {};
 
+    Student& Student::operator=(const Student& other) {
+        if (this != &other) {  // Avoid self-assignment
+            // Copy the data members from 'other' to 'this'
+            name = other.name;
+            age = other.age;
+            school = other.school;
+            subjects = other.subjects;
+            extracurricularSubjects = other.extracurricularSubjects;
+            scholarSituation = other.scholarSituation;
+        }
+        return *this;
+    }
+
+    ostream& operator<<(ostream& os, const Student& student) {
+        os << "Name: " << student.name << ", Age: " << student.age << ", School: " << student.school << endl;
+        return os;
+    }
+
     Student::~Student() {
         cout << endl << "Destroying Student object";
         extracurricularSubjects.clear();
@@ -99,5 +117,9 @@ namespace student {
 
     vector<tuple<ISubject *, vector<int>>> Student::getScholarSituation() {
         return scholarSituation;
+    }
+
+    Student::Student() {
+
     }
 }
