@@ -31,6 +31,19 @@ namespace grade_report_space
     }
 }
 
+namespace utils
+{
+    // We can use this for any data type that supports
+    // comparison operator < and swap works for it.
+    template <class T> void bubbleSort(T a[], int n)
+    {
+        for (int i = 0; i < n - 1; i++)
+            for (int j = n - 1; i < j; j--)
+                if (a[j] < a[j - 1])
+                    swap(a[j], a[j - 1]);
+    }
+}
+
 int main() {
     std::vector<ISubject*> subjects1;
     biology::Biology introBiology("Introductory Biology", {"Passion for plants"});
@@ -136,6 +149,16 @@ int main() {
     // Works, resource now stored in ptr2
     std::unique_ptr<Student> unique_student3 = std::move(unique_student0);
     cout << "unique_student3's school: " << unique_student3->getSchool() << endl;
+
+
+    int grades[5] = { 1, 5, 2, 3, 4 };
+    int nr_grades = sizeof(grades) / sizeof(grades[0]);
+
+    utils::bubbleSort<int>(grades, nr_grades);
+    cout << "\nSorted array : ";
+    for (int i = 0; i < nr_grades; i++)
+        cout << grades[i] << " ";
+    cout << endl;
 
     return 0;
 }
