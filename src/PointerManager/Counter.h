@@ -45,7 +45,6 @@ public:
     {
         m_counter--;
     }
-
     // Overloading << operator
     // friend function has the authority to access all
     // protected and private members of the class
