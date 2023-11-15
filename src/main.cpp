@@ -73,10 +73,15 @@ int main() {
     s1.setSchool("Tibiscus");
     s2.printInfo();
 
+    cout << endl << "Third student:" << endl;
     Student s3(s2);
     s3.printInfo();
+
+    cout << endl << "Fourth student:" << endl;
     Student s4(std::move(s3));
     s4.printInfo();
+
+    cout << endl << "Third student again:" << endl;
     s3.printInfo();
     return 0;
 }

@@ -6,8 +6,18 @@ namespace student {
     Student::Student(std::string name, int age) : name(name), age(age) { cout << endl << "Student created"; };
 
     Student::Student(Student &&other) noexcept
-            : Person(std::move(other)), // Call the base class's move constructor
-              scholarSituation(std::move(other.scholarSituation)) {
+            : name(other.name),
+            age(other.age),
+            school(std::move(other.school)),
+            subjects(std::move(other.subjects)),
+            extracurricularSubjects(std::move(other.extracurricularSubjects)),
+            scholarSituation(std::move(other.scholarSituation)) {
+        cout << "Moving Student";
+        other.name = "";
+        other.age = 0;
+        other.school = "";
+        other.subjects.clear();
+        other.extracurricularSubjects.clear();
         other.scholarSituation.clear();
     }
 
